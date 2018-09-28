@@ -8,7 +8,6 @@
 + `cd NKCTF` 后执行
 `git clone git@github.com:NKCTF/NKCTF-Frontend.git frontend`，
 需要已经配置好的 SSH key。如果没有配置，也可以使用 HTTPS 方式。
-+ 如果不是 `Windows 10 x64` ，需要删除 `package-lock.json`
 + `cd frontend` 后执行 `npm install`。如果提示找不到 npm，
 请尝试将 node/bin 添加到环境变量，小娜搜索 `path` -> 环境变量 -> 上面的 PATH -> 添加 `C:\Program Files\nodejs`
 + `npm run dev` 后访问 `http://localhost:8080` (如被占用，则是 808*，查看 output） 即可

@@ -15,7 +15,7 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin([distPath]),
     new HtmlWebpackPlugin({
-      title: '<Template>',
+      title: 'NKCTF',
       template: './src/index.html',
       filename: 'index.html',
     }),
