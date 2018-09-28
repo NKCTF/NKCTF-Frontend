@@ -8,6 +8,7 @@
 + `cd NKCTF` 后执行
 `git clone git@github.com:NKCTF/NKCTF-Frontend.git frontend`，
 需要已经配置好的 SSH key。如果没有配置，也可以使用 HTTPS 方式。
++ 如果不是 `Windows 10 x64` ，需要删除 `package-lock.json`
 + `cd frontend` 后执行 `npm install`。如果提示找不到 npm，
 请尝试将 node/bin 添加到环境变量，小娜搜索 `path` -> 环境变量 -> 上面的 PATH -> 添加 `C:\Program Files\nodejs`
 + `npm run dev` 后访问 `http://localhost:8080` (如被占用，则是 808*，查看 output） 即可
@@ -20,7 +21,7 @@
 + 组件模板在 `src/template.vue`，创建新组件时将其复制一份，放在 `src/components` (代码中用 **@c/** 指代），并将 `export default` 里的 `name` 改成唯一的就可以愉快的使用了。
 + 建议 `@c`  中只放置路由或弹窗，具体组件放置在对应文件夹中，参考 `@c/navbar.vue`
 + 资源文件在 `src/resources` 中，代码中用 **@r/** 指代
-+ `src/css` 中的文件应用于整个项目，可在 `template.vue的拷贝` 中修改 style 标签内容以
++ `src/css` 中的文件应用于整个项目，可在 `template.vue的拷贝` 中修改 style 标签内容以仅应用于当前组件
 
 ### Frameworks / 所用框架
 
