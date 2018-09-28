@@ -3,7 +3,7 @@
 
   export default {
     name: 'nav-item',
-    props: ['to', 'icon'],
+    props: ['to'],
     beforeMount() {
 
     },
@@ -23,13 +23,18 @@
 
 </script>
 
-<style scoped lang="vcss">
-
+<style>
+.nav-item {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+}
 </style>
 
 <template>
-  <router-link :id="$options.name" :class="$options.name" class="navbar-item" :to="to">
-    <span class="icon"><i class="fas" :class="icon"></i></span>
-    <span><slot></slot></span>
-  </router-link>
+  <div :class="$options.name" class="column">
+    <router-link :to="to">
+      <slot></slot>
+    </router-link>
+  </div>
 </template>

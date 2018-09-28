@@ -41,6 +41,13 @@ const store = new Vuex.Store({
 const router = new VueRouter({
   routes : [
     {path: '/', component: routes.home},
+    {path: '/teams', component: routes.teams},
+    {path: '/scoreboard', component: routes.scoreboard},
+    {path: '/challenges', component: routes.challenges},
+    {path: '/readme', component: routes.readme},
+    {path: '/beginner', component: routes.beginner},
+    {path: '/login', component: routes.login},
+    {path: '/register', component: routes.register},
   ]
 });
 

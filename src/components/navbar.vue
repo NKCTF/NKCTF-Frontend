@@ -1,70 +1,43 @@
 <script>
-  import {mapState, mapMutations} from 'vuex';
+import {mapState, mapMutations} from 'vuex';
+import Logo from '@r/logo.png';
 
-  export default {
-    name: 'navbar',
-    beforeMount() {
+export default {
+  name: 'navbar',
+  data() {
+    return {
+      Logo,
+    };
+  },
+  beforeMount() {
 
-    },
-    mounted() {
+  },
+  mounted() {
 
-    },
-    destroyed() {
+  },
+  destroyed() {
 
-    },
-    computed: {
-      ...mapState({}),
-    },
-    methods: {
-      activeRegister() {
-        this.$root.$refs.register.$data.active = true
-      },
-      activeLogin() {
-        this.$root.$refs.login.$data.active = true
-      }
-    },
-  };
+  },
+  computed: {
+    ...mapState({}),
+  },
+  methods: {},
+};
 
 </script>
 
-<style scoped lang="vcss">
+<style scoped lang="scss">
 
 </style>
 
 <template>
-  <nav class="navbar is-transparent" :id="$options.name" :class="$options.name">
-    <div class="container">
-      <div class="navbar-brand">
-        <a class="navbar-item" href="https://bulma.io">
-          <img src="@r/logo.png" alt="NKOJ" width="112" height="28">
-        </a>
-        <div class="navbar-burger burger" data-target="navMenu">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-      </div>
-      <nav-divider></nav-divider>
-      <div id="navMenu" class="navbar-menu">
-        <div class="navbar-start">
-          <nav-item to="/" icon="fa-home">主页</nav-item>
-        </div>
-
-        <div class="navbar-end">
-          <div class="navbar-item">
-            <div class="field">
-              <p class="control has-icons-right">
-                <input class="input is-rounded" type="text" placeholder="搜索">
-                <span class="icon is-small is-right"><i class="fas fa-search"></i></span>
-              </p>
-            </div>
-          </div>
-          <nav-reveal icon="fa-bullhorn">公告</nav-reveal>
-          <nav-divider></nav-divider>
-          <nav-reveal icon="fa-user-plus" @click.native="activeRegister">注册</nav-reveal>
-          <nav-reveal icon="fa-sign-in-alt" @click.native="activeLogin">登陆</nav-reveal>
-        </div>
-      </div>
-    </div>
-  </nav>
+<div class="columns">
+  <nav-item to="/teams">Teams</nav-item>
+  <nav-item to="/scoreboard">ScoreBoard</nav-item>
+  <nav-item to="/challenges">Challenges</nav-item>
+  <nav-logo to="/" :logo="Logo"></nav-logo>
+  <nav-item to="/beginner">Beginner Requests</nav-item>
+  <nav-item to="/readme">README</nav-item>
+  <nav-item to="/login">Join a Team</nav-item>
+</div>
 </template>

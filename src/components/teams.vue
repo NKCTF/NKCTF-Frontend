@@ -2,7 +2,7 @@
 import {mapState, mapMutations} from 'vuex';
 
 export default {
-  name: 'home',
+  name: 'teams',
   beforeMount() {
 
   },
@@ -28,6 +28,6 @@ export default {
 
 <template>
 <div :id="$options.name" :class="$options.name">
-  3
+8
 </div>
 </template>

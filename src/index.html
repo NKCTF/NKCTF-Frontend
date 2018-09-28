@@ -6,12 +6,12 @@
 </head>
 <body>
 <div id="app">
-  <navbar></navbar>
-  <transition name="fade">
-    <div class="container">
-      <router-view></router-view>
-    </div>
-  </transition>
+  <div class="container">
+    <navbar></navbar>
+    <transition name="fade">
+      <router-view class="active-router"></router-view>
+    </transition>
+  </div>
 </div>
 </body>
 </html>
