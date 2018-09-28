@@ -74,7 +74,6 @@ typings/
 
 # .idea
 .idea
-.idea/workspace.xml
 
 # dist files
 public/
