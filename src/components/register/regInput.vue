@@ -2,7 +2,8 @@
   import { mapState, mapMutations } from 'vuex'
   export default {
     name: 'reg-input',
-    props: ['model', 'placeholder', 'icon', 'name'],
+    inheritAttrs: false,
+    props: ['model', 'icon'],
     data() {
       return {
 
@@ -21,11 +22,15 @@
       ...mapState({
 
       }),
+      reducedAttrs() {
+        return this.$attrs
+      },
       activeHelper() {
         switch(this.$props.model.state) {
           case 0:
+            return '';
           case 1:
-            return false;
+            return 'is-warning';
           case 2:
             return 'is-success';
           case 3:
@@ -66,8 +71,7 @@
 <div class="field">
   <label class="label"><slot></slot></label>
   <div class="control has-icons-left has-icons-right">
-    <input class="input" :class="activeHelper" type="text" :name="name"
-           :placeholder="placeholder" v-model="model.value" @blur="$emit('blur')">
+    <input class="input" :class="activeHelper" v-bind="reducedAttrs" v-model="model.value" @blur="$emit('blur')">
     <span class="icon is-small is-left">
       <i class="fas" :class="icon"></i>
     </span>
@@ -75,6 +79,6 @@
       <i :class="activeIcon" class="fas"></i>
     </span>
   </div>
-  <p class="help" :class="[activeHelper, {hidden: activeHelper === false}]">{{model.message || '&nbsp;'}}</p>
+  <p class="help" :class="[activeHelper]">{{model.state === 3 && model.message || '&nbsp;'}}</p>
 </div>
 </template>

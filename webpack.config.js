@@ -31,6 +31,7 @@ module.exports = {
       '@s': path.resolve(__dirname, 'src'),
       '@c': path.resolve(__dirname, 'src/components'),
       '@r': path.resolve(__dirname, 'src/resources'),
+      'api-config': path.resolve(__dirname, 'api.config.js'),
     },
   },
   module: {

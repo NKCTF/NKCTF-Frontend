@@ -27,7 +27,7 @@ $button-focus-border-color: $purple;
 
 @import "~bulma/bulma";
 
-.element {
+* {
   &.is-loading {
     position: relative;
     pointer-events: none;

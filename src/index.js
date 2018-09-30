@@ -7,6 +7,7 @@ const GlobalCSS = require('./css/global.scss');
 const Bulma = require('./css/bulma.scss');
 const FontAwesome = require('@fortawesome/fontawesome-free/js/all.js');
 const Favicon = require('./favicon.ico');
+const Polyfill = require('./polyfill');
 
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', function() {

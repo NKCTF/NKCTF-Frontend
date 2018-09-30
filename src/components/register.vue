@@ -1,20 +1,17 @@
 <script>
 import {mapState, mapMutations} from 'vuex';
+const {STATE_ERROR, STATE_PENDING, STATE_SUCCESS, getModel} = require('../utils/fieldModel');
+const username = getModel();
+const password = getModel();
+const form = getModel();
 
 export default {
   name: 'register',
   data() {
     return {
-      username: {
-        state: 0,
-        value: '',
-        message: '',
-      },
-      password: {
-        state: 0,
-        value: '',
-        message: '',
-      },
+      username,
+      password,
+      form,
     };
   },
   beforeMount() {
@@ -32,19 +29,40 @@ export default {
   methods: {
     ...mapMutations({}),
     updateUsername() {
-      this.username.state = 1;
-      setTimeout(() => {
-        this.username.state = ~~(Math.random() * 2) + 2;
-        this.username.message = `Input: ${this.username.value}`;
-      }, 500);
+      const username = this.username.value;
+      this.username.state = STATE_PENDING;
+      APIFetch(`/user/signup/?username=${username}`).then((response) => {
+        this.username.state = response.code === 0 ? STATE_SUCCESS : STATE_ERROR;
+        this.username.message = response.msg;
+      });
     },
     updatePassword() {
-      this.password.state = 1;
+      this.password.state = STATE_PENDING;
       setTimeout(() => {
-        this.password.state = ~~(Math.random() * 2) + 2;
-        this.password.message = `Input: ${this.password.value}`;
+        const password = this.password.value;
+        if(password.length < 6 || password.length > 16) {
+          this.password.state = STATE_ERROR;
+          this.password.message = `密码应在 6 - 16 字符之间！`;
+        } else {
+          this.password.state = STATE_SUCCESS;
+        }
       }, 500);
     },
+    trySignUp() {
+      const form = this.form;
+      form.state = STATE_PENDING;
+      const username = this.username.value;
+      const password = this.username.value;
+      APIPost('/user/signup/', {username, password}).then((data) => {
+        if(data.code === 0) {
+          form.state = STATE_SUCCESS;
+          setTimeout(() => this.$router.push('/'), 800);
+        } else {
+          form.state = STATE_ERROR;
+        }
+        form.message = data.msg;
+      })
+    }
   },
 };
 
@@ -70,15 +88,21 @@ export default {
   <div class="box">
     <h2>注册</h2>
     <hr>
-    <form>
+    <article class="message" v-if="form.complete"
+             :class="{'is-danger': form.error, 'is-success': form.success}">
+      <div class="message-body">
+        {{form.message}}
+      </div>
+    </article>
+    <form :class="{'is-loading': form.pending}">
       <reg-input name="username" :model.sync="username" icon="fa-user"
                  placeholder="User Name" @blur="updateUsername">Username</reg-input>
-      <reg-input name="password" :model.sync="password" icon="fa-key"
+      <reg-input type="password" name="password" :model.sync="password" icon="fa-key"
                  placeholder="Password" @blur="updatePassword">Password</reg-input>
-      <a class="button is-primary is-pulled-right">注册</a>
+      <a class="button is-primary is-pulled-right" @click="trySignUp">注册</a>
       <a class="is-clearfix"></a>
-      <div class="has-text-centered">已经有账号了喵？<router-link to="/login">立即登陆</router-link></div>
     </form>
+    <div class="has-text-centered">已经有账号了喵？<router-link to="/login">立即登陆</router-link></div>
   </div>
   <!--<div style="flex: 1 0 100%"></div>-->
 </div>
