@@ -17,7 +17,9 @@ const APIFetch = window.APIFetch = function(input, init) {
   const url = new URL(origin.replace(/^\//, ''), API_PATH);
   const request = new Request(url, isRequest ? spreadClass(input) : undefined);
   return fetch(request, init).then((response)=> {
-    return response.json();
+    const json = response.json();
+    console.log(json);
+    return json;
   });
 };
 

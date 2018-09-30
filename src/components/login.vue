@@ -99,7 +99,7 @@ export default {
                  placeholder="User Name" @blur="updateUsername">Username</reg-input>
       <reg-input type="password" name="password" :model.sync="password" icon="fa-key"
                  placeholder="Password" @blur="updatePassword">Password</reg-input>
-      <a class="button is-success is-pulled-right" @click="trySignIn">注册</a>
+      <a class="button is-success is-pulled-right" @click="trySignIn">登录</a>
       <a class="is-clearfix"></a>
       <div class="has-text-centered">还没有账号喵？<router-link to="/register">立即注册</router-link></div>
     </form>
