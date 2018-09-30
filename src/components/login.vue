@@ -52,7 +52,7 @@ export default {
       const form = this.form;
       form.state = STATE_PENDING;
       const username = this.username.value;
-      const password = this.username.value;
+      const password = this.password.value;
       APIPost('/user/login/', {username, password}).then((data) => {
         if(data.code === 0) {
           form.state = STATE_SUCCESS;
