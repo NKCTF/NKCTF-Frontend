@@ -8,6 +8,15 @@ const fieldState = {
   state: STATE_NONE,
   value: '',
   message: '',
+  reset() {
+    this.state = STATE_NONE;
+    this.value = '';
+    this.message = '';
+  },
+  clearState() {
+    this.state = STATE_NONE;
+    this.message = '';
+  }
 };
 
 const handler = {
@@ -21,8 +30,6 @@ const handler = {
     }
   }
 };
-
-
 
 module.exports = {
   STATE_SUCCESS,

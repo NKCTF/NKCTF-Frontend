@@ -19,7 +19,7 @@ export default {
 
   },
   computed: {
-    ...mapState({}),
+    ...mapState({userInfo: state => state.user,}),
   },
   methods: {},
 };
@@ -38,6 +38,7 @@ export default {
   <nav-logo to="/" :logo="Logo"></nav-logo>
   <nav-item to="/beginner">Beginner Requests</nav-item>
   <nav-item to="/readme">README</nav-item>
-  <nav-item to="/login">Join a Team</nav-item>
+  <nav-item to="/login" v-if="userInfo.login === false">Join a Team</nav-item>
+  <nav-item to="/" v-else>Hello, {{userInfo.username}}</nav-item>
 </div>
 </template>

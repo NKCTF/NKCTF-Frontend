@@ -30,11 +30,13 @@ components.keys().forEach(fileName => {
 
 const store = new Vuex.Store({
   state: {
-    count: 0
+    user: {
+      login: false,
+    }
   },
   mutations: {
-    increment (state) {
-      state.count++
+    updateUser (state, info) {
+      state.user = info
     }
   }
 });
@@ -67,5 +69,5 @@ const app = new Vue({
   },
   mounted() {
 
-  }
+  },
 });
