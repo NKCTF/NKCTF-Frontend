@@ -65,11 +65,15 @@ export default {
         } else {
           form.state = STATE_ERROR;
         }
-        form.message = data.msg + data.error || '';
+        form.message = data.msg || '' + data.error || '';
       });
     },
     trySignWithGithub() {
-      const w = window.open(new URL('/user/auth_in?type='+MESSAGE_TYPE_POPUP_GITHUB, API_PATH).href, 'Sign in with GitHub...', getPopupStr(500, 600));
+      const w = window.open(
+          new URL('/user/auth_in?type='+MESSAGE_TYPE_POPUP_GITHUB, API_PATH).href,
+          'Sign in with GitHub...',
+          getPopupStr(500, 600)
+      );
       form.state = STATE_PENDING;
       window._oauthInterval = setInterval(function(){
         if (w.closed) {
@@ -89,7 +93,7 @@ export default {
           form.state = STATE_ERROR;
         }
         w.close();
-        form.message = e.data.msg + e.data.error || '';
+        form.message = e.data.msg || '' + e.data.error || '';
       });
     }
   },

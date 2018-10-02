@@ -18,7 +18,7 @@ const APIFetch = window.APIFetch = function(input, init = {}) {
   const request = new Request(url, isRequest ? spreadClass(input) : undefined);
   return fetch(request, {...init, headers: {...init.headers, 'Accept': 'application/json'}}).
       then(response => {
-        if(response.headers['content-type'] === 'application/json') {
+        if(response.headers.get('Content-Type') === 'application/json') {
           const json = response.json();
           console.log(`request to ${url} got `, json);
           return json;
