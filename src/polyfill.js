@@ -22,18 +22,14 @@ const APIFetch = window.APIFetch = function(input, init = {}) {
           const json = response.json();
           console.log(`request to ${url} got `, json);
           return json;
-        } else if(response.ok) {
+        }
+        return response.text().then(data => {
           return {
-            code: response.status,
+            code: response.ok ? 0 : -response.status,
             status: response.status,
-            data: response.text()
-          }
-        }
-        return {
-          code: -response.status,
-          status: response.status,
-          error: response.text()
-        }
+            [response.ok ? 'data' : 'error']: data,
+          };
+        })
       }).catch(error => ({code: 504, msg: 'Gateway Error', error}));
 };
 

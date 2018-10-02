@@ -65,7 +65,7 @@ export default {
         } else {
           form.state = STATE_ERROR;
         }
-        form.message = data.msg || '' + data.error || '';
+        form.message = (data.msg || '') + (data.error || '');
       });
     },
     trySignWithGithub() {
@@ -93,7 +93,7 @@ export default {
           form.state = STATE_ERROR;
         }
         w.close();
-        form.message = e.data.msg || '' + e.data.error || '';
+        form.message = (e.data.msg || '') + (e.data.error || '');
       });
     }
   },
