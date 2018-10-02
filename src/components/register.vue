@@ -70,7 +70,7 @@ export default {
     },
     trySignWithGithub() {
       const w = window.open(
-          new URL('/user/auth_in?type='+MESSAGE_TYPE_POPUP_GITHUB, API_PATH).href,
+          new URL('user/auth_in?type='+MESSAGE_TYPE_POPUP_GITHUB, API_PATH).href,
           'Sign in with GitHub...',
           getPopupStr(500, 600)
       );
