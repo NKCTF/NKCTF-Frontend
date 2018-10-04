@@ -42,6 +42,7 @@ $nav-logo-min-width: 100px;
   height: $nav-logo-height;
   background-size: contain !important;
   cursor: pointer;
+  margin: auto;
 }
 </style>
 

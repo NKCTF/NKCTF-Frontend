@@ -16,6 +16,8 @@
   bottom: 0;
   right: 0;
   left: 0;
+  overflow-y: scroll;
+  overflow-x: hidden;
   & > .container {
     height: 100%;
     display: flex;
@@ -34,4 +36,8 @@
 .hidden {
   opacity: 0;
   pointer-events: none
+}
+
+html {
+  overflow: hidden!important;
 }

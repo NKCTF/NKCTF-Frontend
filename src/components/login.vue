@@ -31,24 +31,20 @@ export default {
   methods: {
     ...mapMutations({}),
     updateUsername() {
-      const username = this.username.value;
-      this.username.state = STATE_PENDING;
-      APIFetch(`/user/signup/?username=${username}`).then(response => {
-        this.username.state = response.code === 2 ? STATE_SUCCESS : STATE_ERROR;
-        this.username.message = response.code === 0 ? '用户不存在' : response.msg;
-      });
+      // const username = this.username.value;
+      // this.username.state = STATE_PENDING;
+      // APIFetch(`/user/check/username/?username=${username}`).then(response => {
+      //   this.username.state = response.code === 0 ? STATE_SUCCESS : STATE_ERROR;
+      //   this.username.message = `${response.msg}：${response.error}`;
+      // });
     },
     updatePassword() {
-      this.password.state = STATE_PENDING;
-      setTimeout(() => {
-        const password = this.password.value;
-        if(password.length < 6 || password.length > 16) {
-          this.password.state = STATE_ERROR;
-          this.password.message = `密码应在 6 - 16 字符之间！`;
-        } else {
-          this.password.state = STATE_SUCCESS;
-        }
-      }, 100);
+      // const password = this.password.value;
+      // this.password.state = STATE_PENDING;
+      // APIPost(`/user/check/password/`, {password}).then(response => {
+      //   this.password.state = response.code === 0 ? STATE_SUCCESS : STATE_ERROR;
+      //   this.password.message = `${response.msg}：${response.error}`;
+      // });
     },
     trySignIn() {
       const form = this.form;

@@ -36,22 +36,18 @@ export default {
     updateUsername() {
       const username = this.username.value;
       this.username.state = STATE_PENDING;
-      APIFetch(`/user/signup/?username=${username}`).then((response) => {
+      APIFetch(`/user/check/username/?username=${username}`).then(response => {
         this.username.state = response.code === 0 ? STATE_SUCCESS : STATE_ERROR;
-        this.username.message = response.msg;
+        this.password.message = `${response.msg}：${response.error}`;
       });
     },
     updatePassword() {
+      const password = this.password.value;
       this.password.state = STATE_PENDING;
-      setTimeout(() => {
-        const password = this.password.value;
-        if (password.length < 6 || password.length > 16) {
-          this.password.state = STATE_ERROR;
-          this.password.message = `密码应在 6 - 16 字符之间！`;
-        } else {
-          this.password.state = STATE_SUCCESS;
-        }
-      }, 500);
+      APIPost(`/user/check/password/`, {password}).then(response => {
+        this.password.state = response.code === 0 ? STATE_SUCCESS : STATE_ERROR;
+        this.password.message = `${response.msg}：${response.error}`;
+      });
     },
     trySignUp() {
       const form = this.form;

@@ -7,16 +7,22 @@ export default {
 
   },
   mounted() {
-
+    APIFetch('/user/info/user').then(data => {
+      if(data.code === 0) {
+        data.data.isLogin = true;
+        this.updateUser(data.data);
+        this.$router.push('/scoreboard');
+      }
+    })
   },
   destroyed() {
 
   },
   computed: {
-    ...mapState({}),
+    ...mapState({userInfo: state => state.user}),
   },
   methods: {
-    ...mapMutations({}),
+    ...mapMutations(['updateUser']),
   },
 };
 

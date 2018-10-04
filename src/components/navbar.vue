@@ -27,18 +27,17 @@ export default {
 </script>
 
 <style scoped lang="scss">
-
+  #navbar {
+    flex: 0 0 auto;
+  }
 </style>
 
 <template>
-<div class="columns">
-  <nav-item to="/teams">Teams</nav-item>
-  <nav-item to="/scoreboard">ScoreBoard</nav-item>
-  <nav-item to="/challenges">Challenges</nav-item>
-  <nav-logo to="/" :logo="Logo"></nav-logo>
-  <nav-item to="/beginner">Beginner Requests</nav-item>
-  <nav-item to="/readme">README</nav-item>
-  <nav-item to="/login" v-if="userInfo.login === false">Join a Team</nav-item>
-  <nav-item to="/" v-else>Hello, {{userInfo.username}}</nav-item>
+<div :id="$options.name" class="columns">
+  <nav-item v-if="userInfo.isLogin" to="/scoreboard">ScoreBoard</nav-item>
+  <nav-item v-if="userInfo.isLogin" to="/challenges">Challenges</nav-item>
+  <nav-logo to="" :logo="Logo"></nav-logo>
+  <nav-item v-if="userInfo.isLogin" to="/search">Search</nav-item>
+  <nav-item v-if="userInfo.isLogin" to="/profile" >Profile</nav-item>
 </div>
 </template>
