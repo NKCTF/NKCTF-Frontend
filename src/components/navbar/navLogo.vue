@@ -28,7 +28,7 @@ export default {
 
 <style lang="scss">
 $nav-logo-height: 100px;
-$nav-logo-max-width: 200px;
+$nav-logo-max-width: 260px;
 $nav-logo-min-width: 100px;
 @media (min-width: 850px) and (orientation: landscape) {
   .nav-logo .logo-image{

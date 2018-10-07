@@ -38,7 +38,7 @@ export default {
       this.username.state = STATE_PENDING;
       APIFetch(`/user/check/username/?username=${username}`).then(response => {
         this.username.state = response.code === 0 ? STATE_SUCCESS : STATE_ERROR;
-        this.password.message = `${response.msg}：${response.error}`;
+        this.username.message = `${response.msg}：${response.error}`;
       });
     },
     updatePassword() {
