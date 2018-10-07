@@ -3,7 +3,7 @@
   export default {
     name: 'reg-input',
     inheritAttrs: false,
-    props: ['model', 'icon'],
+    props: ['model', 'icon', 'showSuccess'],
     data() {
       return {
 
@@ -53,6 +53,14 @@
             return false;
         }
       },
+      showMessage() {
+          switch (this.model.state) {
+              case 0:
+              case 1: return false;
+              case 2: return this.showSuccess !== undefined
+              case 3: return true;
+          }
+      }
     },
     methods: {
       ...mapMutations({
@@ -79,6 +87,6 @@
       <i :class="activeIcon" class="fas"></i>
     </span>
   </div>
-  <p class="help" :class="[activeHelper]">{{model.state === 3 && model.message || '&nbsp;'}}</p>
+  <p class="help" :class="[activeHelper]">{{showMessage && model.message || '&nbsp;'}}</p>
 </div>
 </template>
