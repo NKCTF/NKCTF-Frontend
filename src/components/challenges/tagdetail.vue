@@ -79,7 +79,9 @@
       <tbody>
         <tr v-for="(question, index) in questionList">
           <td>{{ index+1 }}</td>
-          <td>{{ question.question_name }}</td>
+          <router-link tag="td" :to="'question/' + question.question_id">
+            {{ question.question_name }}
+          </router-link>
           <td>{{ question.score }}</td>
           <td>{{ question.solved_by }}</td>
           <td>{{ question.first_solved }}</td>

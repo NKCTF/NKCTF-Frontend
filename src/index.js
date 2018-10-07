@@ -56,6 +56,7 @@ const router = new VueRouter({
     {path: '/login', component: routes.login},
     {path: '/register', component: routes.register},
     {path: '/challenges/:tagname', component: routes.tagdetail},
+    {path: '/challenges/question/:questionid', component: routes.questiondetail}
   ],
 });
 
