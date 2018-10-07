@@ -16,10 +16,12 @@
         flag,
       }
     },
+    created(){
+        this.fetch();
+    },
     beforeMount() {
         this.flag.value = null;
         console.log(this.$route.params["questionid"]);
-        this.fetch();
     },
     mounted() {
     },
@@ -52,7 +54,7 @@
       },
       submitFlag() {
           console.log(this.$data);
-          alert(this.questionMsg.question_id);
+          this.flag.state = STATE_PENDING;
           APIPost('/question/flg', {question_id: this.questionMsg.question_id, flag: flag.value}).then(
               data => {
                   console.log(data);
@@ -87,6 +89,7 @@
               <br><br>
               {{questionMsg.description}}
             </p>
+            <a :href="questionMsg.annex_link">{{questionMsg.annex_link===null ? "":"附件地址"}}</a>
           </div>
           <reg-input type="text" name="flag" :model.sync="flag" icon="fas fa-flag-checkered"
             placeholder="FLAG" @blur="submitFlag()" showSuccess>
