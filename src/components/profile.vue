@@ -4,13 +4,15 @@ const {STATE_ERROR, STATE_PENDING, STATE_SUCCESS, getModel} = require('../utils/
 
 const username = getModel();
 const password = getModel();
-const email = getModel;
+const email = getModel();
 const description = getModel();
 const qq = getModel();
+const github = getModel();
+const user_career = getModel();
 
 export default {
   name: 'profile',
-  beforeMount() {
+    beforeMount() {
 
   },
   data() {
@@ -19,16 +21,19 @@ export default {
       password,
       email,
       description,
-      qq
+      qq,
+      github,
+      user_career,
     }
   },
   mounted() {
     this.$root.updateUserInfo().then(() => {
       this.username.value = this.userInfo.username;
-      this.password.value = this.userInfo.password;
       this.email.value = this.userInfo.email;
       this.description.value = this.userInfo.description;
       this.qq.value = this.userInfo.qq;
+      this.github.value = this.userInfo.github;
+      this.user_career.value = this.userInfo.user_career || "请选择..";
       console.log(this.userInfo, this.$data);
     });
   },
@@ -41,7 +46,32 @@ export default {
   methods: {
     ...mapMutations({}),
     update(type) {
-
+        this[type].state = STATE_PENDING;
+        APIPost('/user/alter/alter_personal/', {attribute: type, value: this[type].value}).then(
+          data => {
+              if (data.code === 0) {
+                  this[type].message = data.msg;
+                  this[type].state = STATE_SUCCESS;
+              }else{
+                  this[type].message = data.error;
+                  this[type].state = STATE_ERROR;
+              }
+          }
+      )
+    },
+    updateselect(type) {
+        console.log(this.$data);
+        APIPost('/user/alter/alter_personal/', {attribute: type, value: this[type].value}).then(
+            data => {
+                if (data.code === 0){
+                    this[type].message = data.msg;
+                    this[type].state = STATE_SUCCESS;
+                }else{
+                    this[type].message = data.error;
+                    this[type].state = STATE_ERROR;
+                }
+            }
+        )
     }
   },
 };
@@ -49,27 +79,38 @@ export default {
 </script>
 
 <style scoped lang="vcss">
-
+  .profile{
+    padding-bottom: 2rem;
+  }
 </style>
 
 <template>
 <div :id="$options.name" :class="$options.name">
-  <template>
+  <div style="width:30%">
   <reg-input name="username" :model.sync="username" icon="fa-user"
-             placeholder="User Name" @blur="update('username')">Username
-  </reg-input>
-  <reg-input type="password" name="password" :model.sync="password" icon="fa-key"
-             placeholder="Password" @blur="update('password')">Password
+             placeholder="User Name" @blur="update('username')" showSuccess>Username
   </reg-input>
   <reg-input type="email" name="email" :model.sync="email" icon="fa-at"
-             placeholder="Email" @blur="update('email')">Email
+             placeholder="Email" @blur="update('email')" showSuccess>Email
   </reg-input>
-  <reg-input type="text" name="qq" :model.sync="qq" icon="fa-key"
-             placeholder="QQ" @blur="update('qq')">QQ
+  <reg-input type="text" name="qq" :model.sync="qq" icon="fab fa-qq"
+             placeholder="QQ" @blur="update('qq')" showSuccess>QQ
   </reg-input>
-  <reg-input type="text" name="description" :model.sync="description" icon="fa-key"
-             placeholder="Description" @blur="update('description')">Description
+  <reg-input type="text" name="github" :model.sync="github" icon="fab fa-github-alt"
+             placeholder="GitHub" @blur="update('github')" showSuccess>Github
   </reg-input>
-  </template>
+  <reg-input type="text" name="description" :model.sync="description" icon="fas fa-align-left"
+             placeholder="Description" @blur="update('description')" showSuccess>Description
+  </reg-input>
+  <reg-select usertitle="Career" :model.sync="user_career" @change="updateselect('user_career')" showSuccess>
+    <option selected>请选择..</option>
+    <option>WEB, 网络</option>
+    <option>PWN, 二进制</option>
+    <option>Reverse, 逆向</option>
+    <option>Crypto, 密码学</option>
+    <option>MISC, 杂项</option>
+    <option>Almighty, 万精油</option>
+  </reg-select>
+  </div>
 </div>
 </template>

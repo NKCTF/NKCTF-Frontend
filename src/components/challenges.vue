@@ -26,46 +26,46 @@ export default {
 .tile.is-ancestor {
   width: 100%;
 }
+.challenges {
+  padding-bottom: 2rem;
+}
 </style>
 
 <template>
 <div :id="$options.name" :class="$options.name">
   <div class="tile is-ancestor">
-    <div class="tile is-parent">
-      <article class="tile is-child has-text-centered">
-        <p class="title">第一组</p>
-        <p class="subtitle">Foo</p>
+    <router-link tag="div" to="challenges/PWN" class="tile is-parent">
+      <article class="tile  box is-child has-text-centered">
+        <p class="title">PWN</p>
+        <p class="subtitle">二进制</p>
       </article>
-    </div>
-    <div class="tile is-parent">
-      <article class="tile is-child has-text-centered">
-        <p class="title">第二组</p>
-        <p class="subtitle">Bar</p>
+    </router-link>
+    <router-link tag="div" to="challenges/Reverse" class="tile is-parent">
+      <article class="tile  box is-child has-text-centered">
+        <p class="title">WEB</p>
+        <p class="subtitle">网络</p>
       </article>
-    </div>
-    <div class="tile is-parent">
-      <article class="tile is-child has-text-centered">
-        <p class="title">第三组</p>
-        <p class="subtitle">Meow</p>
-        <div class="content">
-          <p>shesl 小哥哥太强了</p>
-        </div>
+    </router-link>
+    <router-link tag="div" to="challenges/Crypto" class="tile is-parent">
+      <article class="tile  box is-child has-text-centered">
+        <p class="title">Crypto</p>
+        <p class="subtitle">密码学</p>
       </article>
-    </div>
+    </router-link>
   </div>
   <div class="tile is-ancestor">
-    <div class="tile is-parent">
-      <article class="tile is-child has-text-centered">
-        <p class="title">第四组</p>
-        <p class="subtitle">Foo</p>
+    <router-link tag="div" to="challenges/Reverse" class="tile is-parent">
+      <article class="tile  box is-child has-text-centered" style="height: 80%">
+        <p class="title">Reverse</p>
+        <p class="subtitle">逆向</p>
       </article>
-    </div>
-    <div class="tile is-parent">
-      <article class="tile is-child has-text-centered">
-        <p class="title">第五组</p>
-        <p class="subtitle">Bar</p>
+    </router-link>
+    <router-link tag="div" to="challenges/MISC" class="tile is-parent">
+      <article class="tile  box is-child has-text-centered"  style="height: 80%">
+        <p class="title">MISC</p>
+        <p class="subtitle">杂项</p>
       </article>
-    </div>
+    </router-link>
   </div>
 </div>
 </template>

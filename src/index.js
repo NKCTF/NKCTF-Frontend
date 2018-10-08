@@ -55,6 +55,8 @@ const router = new VueRouter({
     {path: '/profile', component: routes.profile},
     {path: '/login', component: routes.login},
     {path: '/register', component: routes.register},
+    {path: '/challenges/:tagname', component: routes.tagdetail},
+    {path: '/challenges/question/:questionid', component: routes.questiondetail}
   ],
 });
 
@@ -89,5 +91,4 @@ const app = new Vue({
     },
   },
 });
-
 
