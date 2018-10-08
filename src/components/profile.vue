@@ -72,7 +72,17 @@ export default {
                 }
             }
         )
-    }
+    },
+    logout() {
+        APIFetch('/user/logout/').then(
+            data => {
+                console.log(data);
+                if(data.code === 0){
+                    setTimeout(() => this.$router.push('/login'), 800)
+                }
+            }
+        );
+    },
   },
 };
 
@@ -111,6 +121,7 @@ export default {
     <option>MISC, 杂项</option>
     <option>Almighty, 万精油</option>
   </reg-select>
+  <a class="button is-danger is-fullwidth" @click="logout()">注销</a>
   </div>
 </div>
 </template>
