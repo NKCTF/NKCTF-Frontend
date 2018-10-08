@@ -9,15 +9,6 @@
 
       }
     },
-    beforeMount() {
-
-    },
-    mounted() {
-
-    },
-    destroyed() {
-
-    },
     computed: {
       ...mapState({
 

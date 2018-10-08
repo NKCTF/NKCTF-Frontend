@@ -37,9 +37,6 @@ export default {
       console.log(this.userInfo, this.$data);
     });
   },
-  destroyed() {
-
-  },
   computed: {
     ...mapState({userInfo: state => state.user}),
   },

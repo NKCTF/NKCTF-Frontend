@@ -1,0 +1,15 @@
+const
+    STATE_NOSEARCH = 0,
+    STATE_USER = 1,
+    STATE_SEARCH_LOADING = 2,
+    STATE_TEAM = 3,
+    STATE_SEARCH_FAIL = 4;
+
+
+module.exports = {
+    STATE_NOSEARCH,
+    STATE_SEARCH_LOADING,
+    STATE_USER,
+    STATE_TEAM,
+    STATE_SEARCH_FAIL,
+};
