@@ -24,6 +24,7 @@ export default {
       qq,
       github,
       user_career,
+      current: 0,
     }
   },
   mounted() {
@@ -57,28 +58,28 @@ export default {
       )
     },
     updateselect(type) {
-        console.log(this.$data);
-        APIPost('/user/alter/alter_personal/', {attribute: type, value: this[type].value}).then(
-            data => {
-                if (data.code === 0){
-                    this[type].message = data.msg;
-                    this[type].state = STATE_SUCCESS;
-                }else{
-                    this[type].message = data.error;
-                    this[type].state = STATE_ERROR;
-                }
-            }
-        )
+      console.log(this.$data);
+      APIPost('/user/alter/alter_personal/', {attribute: type, value: this[type].value}).then(
+        data => {
+          if (data.code === 0){
+            this[type].message = data.msg;
+            this[type].state = STATE_SUCCESS;
+          }else{
+            this[type].message = data.error;
+            this[type].state = STATE_ERROR;
+          }
+        }
+      )
     },
     logout() {
-        APIFetch('/user/logout/').then(
-            data => {
-                console.log(data);
-                if(data.code === 0){
-                    setTimeout(() => this.$router.push('/login'), 800)
-                }
-            }
-        );
+      APIFetch('/user/logout/').then(
+        data => {
+          console.log(data);
+          if(data.code === 0){
+            setTimeout(() => this.$router.push('/login'), 800)
+          }
+        }
+      );
     },
   },
 };
@@ -93,6 +94,10 @@ export default {
 
 <template>
 <div :id="$options.name" :class="$options.name">
+  <div class="buttons has-addons">
+    <span class="button" :class="{'is-info': current === 0}" @click="navTo(0)">用户信息</span>
+    <span class="button" :class="{'is-info': current === 1}" @click="navTo(1)">团队信息</span>
+  </div>
   <div style="width:30%">
   <reg-input name="username" :model.sync="username" icon="fa-user"
              placeholder="User Name" @blur="update('username')" showSuccess>Username

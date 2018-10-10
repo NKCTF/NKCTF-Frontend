@@ -5,7 +5,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const BabelPluginProposalObjectRestSpread = require('@babel/plugin-proposal-object-rest-spread');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
-const distPath = path.resolve(__dirname, './public');
+const distPath = path.resolve(__dirname, '../ctfsite/frontend/static');
 
 module.exports = {
   entry: {
@@ -17,7 +17,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'NKCTF',
       template: './src/index.html',
-      filename: 'index.html',
+      filename: '../index.html',
     }),
     new VueLoaderPlugin(),
     new MiniCssExtractPlugin({
@@ -138,5 +138,6 @@ module.exports = {
   output: {
     filename: 'scripts/[name].[hash:7].js',
     path: distPath,
+    publicPath: "./static/"
   },
 };
