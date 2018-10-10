@@ -1,4 +1,4 @@
 module.exports = {
-  API_HOST:  undefined,
-  API_BASE: '/ctf-api/'
+  API_HOST:  undefined,//"ctf.shesl.top",
+  API_BASE:  '/api/'
 };
